@@ -1,0 +1,71 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+#Reading the dataframe
+SouthAfrica_Austalia= pd.read_excel('Australia vs South Africa.xlsx')
+urban_death_rate= pd.read_excel('Urban.xlsx')
+rural_death_rate= pd.read_excel('Rural.xlsx')
+print(SouthAfrica_Austalia)
+print(urban_death_rate)
+print(rural_death_rate)
+
+#Function definition of line plot
+def linePlot():
+    """
+    This function plot the line graph between the runs scored by Australia and South Africa.
+
+    Returns
+    -------
+    None.
+
+    """
+    #Plotting Line graph
+    plt.figure()
+    plt.plot(SouthAfrica_Austalia["Overs"], SouthAfrica_Austalia["Australia"], label="Australia")
+    plt.plot(SouthAfrica_Austalia["Overs"], SouthAfrica_Austalia["South Africa"], label="South Africa")
+    plt.xlabel('Overs')
+    plt.ylabel('Runs Scored')
+    plt.legend()
+    plt.savefig('line_graph.png')
+    plt.show()
+
+#Function definition of bar graph
+def barGraph():
+    """
+    This function plot the bar graph between the Urban death rate and Rural death rate.
+
+    Returns
+    -------
+    None.
+
+    """
+    #Plotting Bar Graph
+    plt.figure(figsize=(10,7))
+    plt.bar(urban_death_rate['Year'], urban_death_rate['Death Rate'], alpha=0.9, label="urban_death_rate")
+    plt.bar(rural_death_rate['Year'], rural_death_rate['Death Rate'], alpha=0.5, label="rural_death_rate")
+    plt.xlabel("Year")
+    plt.ylabel("Death rate")
+    plt.legend()
+    plt.savefig('bar_graph.png')
+    plt.show()
+
+#Function definition of box plot
+def boxPlot():
+    """
+    This function plot the box plot between the Urban death rate and Rural death rate.
+
+    Returns
+    -------
+    None.
+
+    """
+    #Plotting Box Plot
+    plt.figure()
+    plt.boxplot([urban_death_rate["Death Rate"], rural_death_rate["Death Rate"]], labels=["urban_death_rate","rural_death_rate"])
+    plt.savefig('box_plot.png')
+    plt.show()
+
+#Calling the functions
+linePlot()
+barGraph()
+boxPlot()
